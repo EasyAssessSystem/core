@@ -3,9 +3,7 @@ package com.stardust.easyassess.core.context;
 
 import java.math.BigDecimal;
 import java.text.SimpleDateFormat;
-import java.util.Collections;
 import java.util.Date;
-import java.util.List;
 
 public abstract class AbstractContext implements Context {
 

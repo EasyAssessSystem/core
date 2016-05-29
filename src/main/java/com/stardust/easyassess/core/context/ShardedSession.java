@@ -15,7 +15,6 @@ public class ShardedSession extends AbstractContext implements ContextSession {
         this.domain = domain;
     }
 
-
     public void clear() {
         session.invalidate();
     }
