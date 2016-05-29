@@ -3,9 +3,7 @@ package com.stardust.easyassess.core.security;
 
 import com.google.gson.Gson;
 
-import java.io.ByteArrayOutputStream;
-import java.io.InputStream;
-import java.io.OutputStream;
+import java.io.*;
 import java.net.HttpURLConnection;
 import java.net.URL;
 
@@ -15,23 +13,6 @@ public class AuthenticationClient {
 
     public AuthenticationClient(String authenticationServer) {
         this.authenticationServer = authenticationServer;
-    }
-
-    private String getResponseString(InputStream inputStream) throws Exception {
-        byte[] data = read(inputStream);
-        String objectString = new String(data);
-        return objectString.replaceAll("\\u0000","").replaceAll("\n","");
-    }
-
-    private byte[] read(InputStream inputStream) throws Exception {
-        ByteArrayOutputStream outputStream = new ByteArrayOutputStream();
-        byte[] buffer = new byte[1024];
-        int len = 0;
-        while ((len = inputStream.read(buffer)) != -1) {
-            outputStream.write(buffer);
-        }
-        inputStream.close();
-        return outputStream.toByteArray();
     }
 
     public RolePermissions getRolePermissions(Long role) {
@@ -46,8 +27,9 @@ public class AuthenticationClient {
             Gson gson = new Gson();
 
             if (conn.getResponseCode() == 200) {
+                Reader reader = new InputStreamReader(conn.getInputStream());
                 RolePermissions rolePermissions
-                        = gson.fromJson(getResponseString(conn.getInputStream()), RolePermissions.class);
+                        = gson.fromJson(reader, RolePermissions.class);
                 return rolePermissions;
             }
         } catch (Exception ex) {
@@ -101,8 +83,9 @@ public class AuthenticationClient {
             os.close();
 
             if (conn.getResponseCode() == 200) {
+                Reader reader = new InputStreamReader(conn.getInputStream());
                 APIAuthentication apiAuthentication
-                        = gson.fromJson(getResponseString(conn.getInputStream()), APIAuthentication.class);
+                        = gson.fromJson(reader, APIAuthentication.class);
                 return apiAuthentication;
             }
         } catch (Exception ex) {
