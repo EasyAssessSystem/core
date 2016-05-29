@@ -34,6 +34,55 @@ public class AuthenticationClient {
         return outputStream.toByteArray();
     }
 
+    public RolePermissions getRolePermissions(Long role) {
+        try {
+            String authPath = authenticationServer + "/get/" + role;
+            HttpURLConnection conn = (HttpURLConnection) new URL(authPath).openConnection();
+            conn.setRequestProperty("Accept", "application/json;charset:utf-8");
+            conn.setConnectTimeout(5000);
+            conn.setUseCaches(false);
+            conn.setRequestProperty("charset", "utf-8");
+            conn.setRequestMethod("GET");
+            Gson gson = new Gson();
+
+            if (conn.getResponseCode() == 200) {
+                RolePermissions rolePermissions
+                        = gson.fromJson(getResponseString(conn.getInputStream()), RolePermissions.class);
+                return rolePermissions;
+            }
+        } catch (Exception ex) {
+            ex.printStackTrace();
+        }
+
+        return null;
+    }
+
+    public RolePermissions saveRolePermissions(RolePermissions permissions) {
+        try {
+            String authPath = authenticationServer + "/save";
+            HttpURLConnection conn = (HttpURLConnection) new URL(authPath).openConnection();
+            conn.setRequestProperty("Accept", "application/json;charset:utf-8");
+            conn.setConnectTimeout(5000);
+            conn.setUseCaches(false);
+            conn.setDoOutput(true);
+            conn.setRequestProperty("charset", "utf-8");
+            conn.setRequestMethod("PUT");
+            Gson gson = new Gson();
+
+            byte[] outputBytes = gson.toJson(permissions).getBytes("UTF-8");
+            OutputStream os = conn.getOutputStream();
+            os.write(outputBytes);
+            os.close();
+
+            if (conn.getResponseCode() == 200) {
+                return permissions;
+            }
+        } catch (Exception ex) {
+            ex.printStackTrace();
+        }
+        return null;
+    }
+
     public APIAuthentication register(PermissionChangeListener observer) {
         try {
             String authPath = authenticationServer + "/register";
