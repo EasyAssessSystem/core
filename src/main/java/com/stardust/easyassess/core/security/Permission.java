@@ -10,6 +10,8 @@ public class Permission {
     private boolean GET = false;
     private boolean PUT = false;
     private boolean DELETE = false;
+    private String menuRef = "";
+
 
     public String getPath() {
         return path;
@@ -57,6 +59,14 @@ public class Permission {
 
     public void setDELETE(boolean DELETE) {
         this.DELETE = DELETE;
+    }
+
+    public String getMenuRef() {
+        return menuRef;
+    }
+
+    public void setMenuRef(String menuRef) {
+        this.menuRef = menuRef;
     }
 
     public boolean allowed(String uri, String method) {
