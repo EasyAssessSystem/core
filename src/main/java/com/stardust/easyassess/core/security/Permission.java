@@ -10,7 +10,8 @@ public class Permission {
     private boolean GET = false;
     private boolean PUT = false;
     private boolean DELETE = false;
-    private String menuRef = "";
+    private String component = "";
+    private boolean USABILITY = false;
 
 
     public String getPath() {
@@ -61,12 +62,20 @@ public class Permission {
         this.DELETE = DELETE;
     }
 
-    public String getMenuRef() {
-        return menuRef;
+    public boolean getUSABILITY() {
+        return USABILITY;
     }
 
-    public void setMenuRef(String menuRef) {
-        this.menuRef = menuRef;
+    public void setUSABILITY(boolean USABILITY) {
+        this.USABILITY = USABILITY;
+    }
+
+    public String getComponent() {
+        return component;
+    }
+
+    public void setComponent(String component) {
+        this.component = component;
     }
 
     public boolean allowed(String uri, String method) {
