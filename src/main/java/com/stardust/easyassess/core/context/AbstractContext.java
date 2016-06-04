@@ -29,8 +29,7 @@ public abstract class AbstractContext implements Context {
         Object value = getter(index);
         int results = defaultVal;
         try {
-            String [] values =  (String [])value;
-            results = Integer.parseInt(values[0]);
+            results = Integer.parseInt(value.toString());
         } catch (Exception e) {
         }
         return results;
@@ -79,8 +78,7 @@ public abstract class AbstractContext implements Context {
         Object value = getter(index);
         BigDecimal results = defaultVal;
         try {
-            String [] values =  (String [])value;
-            results = new BigDecimal(values[0]);
+            results = new BigDecimal(value.toString());
         } catch (Exception e) {
         }
         return results;
@@ -105,8 +103,7 @@ public abstract class AbstractContext implements Context {
         Object value = getter(index);
         float results = defaultVal;
         try {
-            String [] values =  (String [])value;
-            results = Float.parseFloat(values[0]);
+            results = Float.parseFloat(value.toString());
         } catch (Exception e) {
         }
         return results;
@@ -124,8 +121,7 @@ public abstract class AbstractContext implements Context {
         Object value = getter(index);
         double results = defaultValue;
         try {
-            String [] values =  (String [])value;
-            results = Double.parseDouble(values[0]);
+            results = Double.parseDouble(value.toString());
         } catch (Exception e) {
         }
         return results;
@@ -139,8 +135,7 @@ public abstract class AbstractContext implements Context {
         Object value = getter(index);
         long results = defaultVal;
         try {
-            String [] values =  (String [])value;
-            results = Long.parseLong(values[0]);
+            results = Long.parseLong(value.toString());
         } catch (Exception e) {
         }
         return results;
