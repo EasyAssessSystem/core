@@ -5,7 +5,6 @@ import java.math.BigDecimal;
 import java.util.Date;
 
 public interface Context {
-
     Object get(String index, Object defaultVal);
     Object get(String index);
     Integer getInt(String paramName);
