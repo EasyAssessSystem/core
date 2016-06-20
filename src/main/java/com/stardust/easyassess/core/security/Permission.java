@@ -1,7 +1,9 @@
 package com.stardust.easyassess.core.security;
 
 
-public class Permission {
+import java.io.Serializable;
+
+public class Permission implements Serializable {
 
     private String path = "";
     private String desc = "";
