@@ -43,8 +43,9 @@ public abstract class AbstractContext implements Context {
         Object value = getter(index);
         String results = defaultVal;
         try {
-            String [] values =  (String [])value;
-            results = values[0];
+            if (value instanceof String) {
+                results = value.toString();
+            }
         } catch (Exception e) {
         }
         return results;

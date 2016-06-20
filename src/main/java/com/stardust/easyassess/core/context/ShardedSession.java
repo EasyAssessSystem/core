@@ -28,15 +28,19 @@ public class ShardedSession extends AbstractContext implements ContextSession {
         }
     }
 
+    public String getSessionKey() {
+        return this.session.getId();
+    }
+
     public void remove(String index) {
         session.removeAttribute(domain + "_" + index);
     }
 
     protected Object getter(String index) {
-        return session.getAttribute(domain + "_" + index);
+        return session.getAttribute(domain + "_" +index);
     }
 
     protected void setter(String index, Object val) {
-        session.setAttribute(domain + "_" + index, val);
+        session.setAttribute(domain + "_" +index, val);
     }
 }
