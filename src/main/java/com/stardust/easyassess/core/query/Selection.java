@@ -22,7 +22,7 @@ public class Selection {
     }
 
     public enum Operator {
-        EQUAL("="),NOT_EQUAL("!="),GREATER(">"),GREATER_EQUAL(">="),LESS("<"),LESS_EQUAL("<="),LIKE(" like "),IS_NULL( "" );
+        EQUAL("="),NOT_EQUAL("!="),GREATER(">"),GREATER_EQUAL(">="),LESS("<"),LESS_EQUAL("<="),LIKE(" like "),IS_NULL( "" ), NOT_NULL( "" ), EXSITS ("");
 
         private String opt = "";
 
