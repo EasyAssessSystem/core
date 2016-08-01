@@ -2,5 +2,5 @@ package com.stardust.easyassess.core.presentation;
 
 
 public enum ResultCode {
-    UNDEFINED, FAILED, SUCC, NOT_FOUND
+    UNDEFINED, FAILED, ERROR ,SUCC, NOT_FOUND
 }
